@@ -15,6 +15,14 @@ class Categoria(Base):
     Category_Creation = Column(TIMESTAMP, nullable=False)
     Category_User_Creator = Column(String(45), nullable=False)
 
+    def serielize(self):
+        return {
+            "id": self.id,
+            "Category_Name": self.Category_Name,
+            "Category_Creation": self.Category_Creation,
+            "Category_User_Creator": self.Category_User_Creator
+        }
+
 
 class DatosContacto(Base):
     __tablename__ = 'datos_contacto'
@@ -25,6 +33,16 @@ class DatosContacto(Base):
     City = Column(String(45), nullable=False)
     Celphone = Column(String(45), nullable=False)
     State_Comuna = Column('State/Comuna', String(45), nullable=False)
+
+    def serielize(self):
+        return{
+            "usuario_idusuario": self.usuario_idusuario,
+            "id": self.id,
+            "country": self.country,
+            "City": self.City,
+            "Celphone": self.Celphone,
+            "State_Comuna": self.State_Comuna
+        }
 
 
 class Historial(Base):
@@ -37,6 +55,17 @@ class Historial(Base):
     Description = Column(String(150), nullable=False)
     Price = Column(INTEGER(11), nullable=False)
     User_Solicitude = Column(String(45), nullable=False)
+
+    def serielize(self):
+        return{
+            "id": self.id,
+            "Request_Id": self.Request_Id,
+            "User": self.User,
+            "Category": self.Category,
+            "Description":self.Description,
+            "Price":self.Price,
+            "User_Solicitude":self.User_Solicitude
+        }
 
 
 class MuroTarea(Base):
@@ -51,6 +80,18 @@ class MuroTarea(Base):
     Price = Column(Float, nullable=False)
     Historial_id = Column(INTEGER(11), primary_key=True, nullable=False)
 
+    def serielize(self):
+        return{
+            "id":self.id,
+            "Request_Name":self.Request_Name,
+            "Request_Description": self.Request_Description,
+            "Request_Category": self.Request_Category,
+            "Name_Solicitud": self.Name_Solicitud,
+            "Description_Solicitud": self.Description_Solicitud,
+            "Price": self.Price,
+            "Historial_id":self.Historial_id
+        }
+
 
 class Role(Base):
     __tablename__ = 'roles'
@@ -59,6 +100,13 @@ class Role(Base):
     Usuario = Column(String(45), nullable=False)
     Tipo = Column(String(45), nullable=False)
     usuario_idusuario = Column(INTEGER(11), nullable=False)
+    def serielize(self):
+        return{
+            "id": self.id,
+            "Usuario":self.Usuario,
+            "Tipo":self.Tipo,
+            "usuario_idusuario":self.usuario_idusuario
+        }
 
 
 class Sesion(Base):
@@ -70,6 +118,15 @@ class Sesion(Base):
     Sesion_start = Column(TIMESTAMP, nullable=False)
     Sesion_close = Column(DateTime, nullable=False)
     usuario_id = Column(INTEGER(11), nullable=False)
+    def serielize(self):
+        return{
+            "Id":self.Id,
+            "User":self.User,
+            "Rol":self.Rol,
+            "Sesion_start":self.Sesion_start,
+            "Sesion_close":self.Sesion_close,
+            "usuario_id":self.usuario_id
+        }
 
 
 class SolicitudTarea(Base):
@@ -82,6 +139,16 @@ class SolicitudTarea(Base):
     User_Price = Column(Float, nullable=False)
     Status = Column(String(45), nullable=False)
     Muro_Tareas_id = Column(INTEGER(11), primary_key=True, nullable=False)
+    def serialize(self):
+        return{
+            "id":self.id,
+            "User_Name":self.User_Name,
+            "User_Id":self.User_Id,
+            "User_Description":self.User_Description,
+            "User_Price":self.User_Price,
+            "Status":self.Status
+            "Muro_Tareas_id":self.Muro_Tareas_id
+        }
 
 
 class Tarea(Base):
