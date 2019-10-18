@@ -49,10 +49,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Contact` (
   `Depto_Number` INT NULL,
   `Telephone` INT NULL,
   `Celphone` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`usuario_idusuario`, `id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB;
-
+  PRIMARY KEY (`usuario_idusuario`, `id`));
 
 -- -----------------------------------------------------
 -- Table `ProyectoFinal`.`Log_usuario`
@@ -65,8 +62,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Log_usuario` (
   `Accion` VARCHAR(100) NOT NULL,
   `Error` VARCHAR(100) NOT NULL,
   `usuario_id` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
@@ -82,8 +78,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Person` (
   `BirthDay` VARCHAR(45) NOT NULL,
   `Contact_usuario_idusuario` INT NOT NULL,
   `Contact_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `Contact_usuario_idusuario`, `Contact_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`, `Contact_usuario_idusuario`, `Contact_id`));
 
 
 -- -----------------------------------------------------
@@ -103,8 +98,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Request` (
   `Status` VARCHAR(10) NOT NULL,
   `Contact_usuario_idusuario` INT NOT NULL,
   `Contact_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `Categories_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`, `Categories_id`));
 
 
 -- -----------------------------------------------------
@@ -122,9 +116,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Request_History` (
   `User_Solicitude` VARCHAR(45) NOT NULL,
   `Wall_requests_has_Request_Solicitud_Wall_requests_id` INT NOT NULL,
   `Wall_requests_has_Request_Solicitud_Request_Solicitud_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `Wall_requests_has_Request_Solicitud_Wall_requests_id`, `Wall_requests_has_Request_Solicitud_Request_Solicitud_id`))
-ENGINE = InnoDB
-COMMENT = '		';
+  PRIMARY KEY (`id`, `Wall_requests_has_Request_Solicitud_Wall_requests_id`, `Wall_requests_has_Request_Solicitud_Request_Solicitud_id`));
 
 
 -- -----------------------------------------------------
@@ -141,8 +133,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Request_Solicitud` (
   `Status` VARCHAR(45) NOT NULL,
   `Contact_usuario_idusuario` INT NOT NULL,
   `Contact_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `Contact_usuario_idusuario`, `Contact_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`, `Contact_usuario_idusuario`, `Contact_id`));
 
 
 -- -----------------------------------------------------
@@ -155,8 +146,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Roles` (
   `Usuario` VARCHAR(45) NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
   `usuario_idusuario` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
@@ -175,8 +165,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Wall_requests` (
   `Description_Solicitud` VARCHAR(150) NOT NULL,
   `Price` FLOAT NOT NULL,
   `Wall_requestscol` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
@@ -187,8 +176,7 @@ DROP TABLE IF EXISTS `ProyectoFinal`.`Wall_requests_has_Request_Solicitud` ;
 CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`Wall_requests_has_Request_Solicitud` (
   `Wall_requests_id` INT NOT NULL,
   `Request_Solicitud_id` INT NOT NULL,
-  PRIMARY KEY (`Wall_requests_id`, `Request_Solicitud_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`Wall_requests_id`, `Request_Solicitud_id`));
 
 
 -- -----------------------------------------------------
@@ -206,8 +194,7 @@ CREATE TABLE IF NOT EXISTS `ProyectoFinal`.`usuario` (
   `Request_History_id` INT NOT NULL,
   `Request_History_Wall_requests_has_Request_Solicitud_Wall_requests_id` INT NOT NULL,
   `Request_History_Wall_requests_has_Request_Solicitud_Request_Solicitud_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `Request_History_id`, `Request_History_Wall_requests_has_Request_Solicitud_Wall_requests_id`, `Request_History_Wall_requests_has_Request_Solicitud_Request_Solicitud_id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`, `Request_History_id`, `Request_History_Wall_requests_has_Request_Solicitud_Wall_requests_id`, `Request_History_Wall_requests_has_Request_Solicitud_Request_Solicitud_id`));
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
