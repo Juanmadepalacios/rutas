@@ -14,6 +14,9 @@ class Categoria(Base):
     Category_Name = Column(String(45), nullable=False)
     Category_Creation = Column(TIMESTAMP, nullable=False)
     Category_User_Creator = Column(String(45), nullable=False)
+    
+    def __repr__(self):
+        return '<Categorias %r>' % self.Category_Name
 
     def serielize(self):
         return {
@@ -146,7 +149,7 @@ class SolicitudTarea(Base):
             "User_Id":self.User_Id,
             "User_Description":self.User_Description,
             "User_Price":self.User_Price,
-            "Status":self.Status
+            "Status":self.Status,
             "Muro_Tareas_id":self.Muro_Tareas_id
         }
 
@@ -167,6 +170,22 @@ class Tarea(Base):
     Muro_Tareas_id = Column(INTEGER(11), primary_key=True, nullable=False)
     Muro_Tareas_Historial_id = Column(INTEGER(11), primary_key=True, nullable=False)
 
+    def serialize(self):
+        return{
+            "id":self.id,
+            "Categories_id": self.Categories_id,
+            "User":self.User,
+            "Description":self.Description,
+            "Date":self.Date,
+            "Time":self.Time,
+            "Price":self.Price,
+            "Categoria":self.Categoria,
+            "Status":self.Status,
+            "usuario_id":self.usuario_id,
+            "Muro_Tareas_id":self.Muro_Tareas_id,
+            "Muro_Tareas_Historial_id":self.Muro_Tareas_Historial_id
+        }
+
 
 class Usuario(Base):
     __tablename__ = 'usuario'
@@ -183,3 +202,21 @@ class Usuario(Base):
     password = Column(String(45), nullable=False)
     creation_date = Column(DateTime, nullable=False)
     Estado = Column(String(45), nullable=False)
+
+    def __repr__(self):
+        return '<usuario %r' % self.username, self.password
+
+    def serialize(self):
+        return{
+            "id":self.id,
+            "First_Name": self.First_Name,
+            "BirthDate": self.BirthDate,
+            "Rut": self.Rut,
+            "DV": self.DV,
+            "username": self.username,
+            "ImagePerfil":self.ImagePerfil,
+            "mail":self.mail,
+            "password":self.password,
+            "creation_date":self.creation_date,
+            "Estado":self.Estado
+        }
