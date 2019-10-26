@@ -1,36 +1,20 @@
 from flask import Flask, request, redirect, url_for, jsonify
-from sqlalchemy import Column, Date, DateTime, Float, String, TIMESTAMP
-from sqlalchemy.dialects.mysql import INTEGER
-from sqlalchemy.ext.declarative import declarative_base
-
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']=url
+app.comfig['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db = SQLAlchemy(app)
 
-from database.Models import Usuario, Role, 
+from db.database.Models import Usuario
 
+#RUTAS
 @app.route('/')
 def index():
     return redirect(url_for('/login'))
 
-@app.route("/signup", methods=['GET', 'POST'])
-def register(data):
-    if request.methods =='GET':
-        new_request = Usuario()
-        modelo = {
-            new_request.Name: request.form['name'],
-            new_request.LastName: request.form['lastname'],
-            new_request.Rut: request.form['rut'],
-            new_request
-
-        }
-
-
-
-@app.route('/login', methods= ['GET, POST'])
-def login(data):
-
+import routers
 
 
 
