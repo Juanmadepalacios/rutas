@@ -1,29 +1,36 @@
+from db.Models import Usuario
+from flask import request
+from app import db, app
+
+
 @app.route('/registro', methods=['POST'])
-def registro():
-    nuevo_usuario = Usuario()
-    nuevo_usuario.name = request.form['name']
-    nuevo_usuario.last_name = request.form['lastname']
-    nuevo_usuario.rut = request.form['rut']
-    nuevo_usuario.dV = request.form['verificador']
-    nuevo_usuario.mail = request.form['email']
-    nuevo_usuario.username = request.form['username']
-    nuevo_usuario.password = request.form['password']
-    nuevo_usuario.image = request.form['thumbnail']
+def registry():
+    new_user = Usuario()
+    new_user.name = request.form['name']
+    new_user.last_name = request.form['lastname']
+    new_user.rut = request.form['rut']
+    new_user.dV = request.form['verificador']
+    new_user.mail = request.form['email']
+    new_user.username = request.form['username']
+    new_user.password = request.form['password']
+    new_user.image = request.form['thumbnail']
 
-    nuevo_usuario.name.capitalize()
-    nuevo_usuario.last_name.capitalize()
-    nuevo_usuario.dv.upper()
+    if new_user:
 
-    insertion = db.session.add(nuevo_usuario.Name,
-    nuevo_usuario.last_Name,
-    nuevo_usuario.rut,
-    nuevo_usuario.dV,
-    nuevo_usuario.mail,
-    nuevo_usuario.username,
-    nuevo_usuario.password,
-    nuevo_usuario.image)
+        new_user.name.capitalize()
+        new_user.last_name.capitalize()
+        new_user.dv.upper()
 
-    if insertion:
-        return jsonify(
-            "insertado correctamente"
-        )
+        insertion = db.session.add(new_user.Name,
+                                   new_user.last_Name,
+                                   new_user.rut,
+                                   new_user.dV,
+                                   new_user.mail,
+                                   new_user.username,
+                                   new_user.password,
+                                   new_user.image)
+        if insertion:
+            db.session.commit()
+
+
+

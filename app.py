@@ -1,24 +1,26 @@
-from flask import Flask, request, redirect, url_for, jsonify
+from flask import Flask, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
+import os
 
-
+direccion = os.path.abspath(os.getcwd())+"db/modelo.db"
+url = 'sqlite:///'+direccion
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']=url
-app.comfig['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+app.config['SQLALCHEMY_DATABASE_URI'] = url
+
 db = SQLAlchemy(app)
-
-from db.database.Models import Usuario
-
-#RUTAS
+from db import Models
+# RUTAS
 @app.route('/')
 def index():
     return redirect(url_for('/login'))
 
-import routers
 
-
+# Ruta-login
+@app.route('/login', methods=['POST'])
+def login():
+    return jsonify("todo ok")
 
 
 if __name__ == "__main__":
-    db.create_all()
-    app.run(port=5000,debug=True)
+    app.run(port=5000,
+            debug=True)

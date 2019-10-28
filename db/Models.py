@@ -1,9 +1,11 @@
 #database Relacional SQLALCHEMY
+from app import db
+from flask_sqlalchemy import SQLAlchemy
 class Usuario(db.Model):
     __tablename__='usuarios'
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique =True)
     name = db.Column(db.String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
     rut = db.Column(db.Integer, nullable=False)
     dv = db.Column(db.String(1), nullable=False)
     mail = db.Column(db.String(50), nullable=False)
