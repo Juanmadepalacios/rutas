@@ -1,6 +1,8 @@
 #database Relacional SQLALCHEMY
-from app import db
 from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
 class Usuario(db.Model):
     __tablename__='usuarios'
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique =True)
@@ -17,7 +19,7 @@ class Usuario(db.Model):
 
     def __repr__(self):
         return '<usuario %r>' % self.name, self.last_name, self.rut, self.dv, self.mail, self.username, self.password, self.image, self.rol_id
-    
+
     def serialize(self):
         return {
             "id":self.id,
@@ -44,7 +46,7 @@ class Sesion(db.Model):
 
     def __repr__(self):
         return '<sesion %r>' % self.id, self.user, self.rol, self.session_start, self.session_close, self.user_id
-    
+
     def serialize(self):
         return{
             "id": self.id,
@@ -61,7 +63,7 @@ class Rol(db.Model):
 
     def __repr__(self):
         return '<Rol %r>' % self.id, self.role_name
-    
+
     def serialize(self):
         return {
             "id": self.id,
