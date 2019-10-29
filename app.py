@@ -1,13 +1,16 @@
+import os
 from flask import Flask, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
-import os
+
 
 direccion = os.path.abspath(os.getcwd())+"db/modelo.db"
 url = 'sqlite:///'+direccion
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = url
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:powermetal.4@localhost/final'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 from db import Models
 # RUTAS
 @app.route('/')
@@ -17,8 +20,12 @@ def index():
 
 # Ruta-login
 @app.route('/login', methods=['POST'])
-def login():
+def login(username, password):
     return jsonify("todo ok")
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
+    pass
 
 
 if __name__ == "__main__":

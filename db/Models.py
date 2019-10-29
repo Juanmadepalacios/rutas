@@ -4,16 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 class Usuario(db.Model):
     __tablename__='usuarios'
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique =True)
-    name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    last_name = db.Column(db.String(20), nullable=False)
     rut = db.Column(db.Integer, nullable=False)
     dv = db.Column(db.String(1), nullable=False)
-    mail = db.Column(db.String(50), nullable=False)
+    mail = db.Column(db.String(20), nullable=False)
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
-    image = db.Column(db.LargeBinary(50), nullable=True)
+    image = db.Column(db.LargeBinary(20), nullable=True)
     # Foreigns Keys
-    rol_id = db.Column(db.ForeignKey('Roles.id'), nullable=False)
+    rol_id = db.Column(db.ForeignKey('Rol.id'), nullable=False)
 
     def __repr__(self):
         return '<usuario %r>' % self.name, self.last_name, self.rut, self.dv, self.mail, self.username, self.password, self.image, self.rol_id

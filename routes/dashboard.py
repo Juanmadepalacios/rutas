@@ -9,6 +9,6 @@ def categoria_uno(name):
     name = request.form['']
     categoria = Categoria()
     categoria.query.filter(
-        categoria.category_name = name
+        categoria.category_name
     )
 @app.route('/categoria/<subdomain :string>')
