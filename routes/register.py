@@ -39,16 +39,19 @@ def registry():
                                 if re.match('^[(a-z0-9A-Z\_\-\.)]', new_user.password):
                                     new_user.image = persona["thumbnail"]
                                     if new_user.lower().endswitch('.jpeg','.png','.gif'):
-                                        insertion = db.session.add(
-                                            new_user.name,
-                                            new_user.last_name,
-                                            new_user.rut,
-                                            new_user.dv,
-                                            new_user.username,
-                                            new_user.password,
-                                            new_user.image
-
-                                        )
+                                         try:
+                                            insertion = db.session.add(
+                                                new_user.name,
+                                                new_user.last_name,
+                                                new_user.rut,
+                                                new_user.dv,
+                                                new_user.username,
+                                                new_user.password,
+                                                new_user.image)
+                                            db.session.commit()
+                                            raise ValueError("error al realizar la insercion de datos a la DB favor revisar")
+                                         except ValueError as ve:
+                                                print(ve)                                       
                                     else:
                                         jsonify("Formatos permitodos JPEG, PNG, GIF,Escritos en minisculas")
                             else:
