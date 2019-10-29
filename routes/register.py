@@ -37,7 +37,20 @@ def registry():
                             if (10 >= len(new_user.username) <=12):
                                 new_user.password = persona["password"]
                                 if re.match('^[(a-z0-9A-Z\_\-\.)]', new_user.password):
+                                    new_user.image = persona["thumbnail"]
+                                    if new_user.lower().endswitch('.jpeg','.png','.gif'):
+                                        insertion = db.session.add(
+                                            new_user.name,
+                                            new_user.last_name,
+                                            new_user.rut,
+                                            new_user.dv,
+                                            new_user.username,
+                                            new_user.password,
+                                            new_user.image
 
+                                        )
+                                    else:
+                                        jsonify("Formatos permitodos JPEG, PNG, GIF,Escritos en minisculas")
                             else:
                                 jsonify("el correo exede o le faltan la cantidad de carateres permitidos")
                         else:
@@ -51,14 +64,14 @@ def registry():
         else:
             return jsonify("validar largo de caracteres para usuario")
 
-    new_user.name = request.json['name']
+    '''new_user.name = request.json['name']
     new_user.last_name = request.form['lastname']
     new_user.rut = request.form['rut']
     new_user.dV = request.form['verificador']
     new_user.mail = request.form['email']
     new_user.username = request.form['username']
     new_user.password = request.form['password']
-    new_user.image = request.form['thumbnail']
+    new_user.image = request.form['thumbnail']'''
 
     if new_user:
 

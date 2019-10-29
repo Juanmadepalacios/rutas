@@ -1,6 +1,7 @@
 #database Relacional SQLALCHEMY
 from app import db
 from flask_sqlalchemy import SQLAlchemy
+
 class Usuario(db.Model):
     __tablename__='usuarios'
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique =True)
@@ -95,7 +96,8 @@ class Tarea(db.Model):
 class Categoria(db.Model):
     __tablename__='categorias'
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
-    category_name = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(20), nullable=False)
+    code = db.Colum(db.String(20), nullable=False, unique=True)
 
     def __repr__(self):
         return '<Categoria %r>' % self.id, self.Category_name
