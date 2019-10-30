@@ -2,14 +2,13 @@ import os
 from flask import Flask, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
-
-direccion = os.path.abspath(os.getcwd())+"db/modelo.db"
-url = 'sqlite:///'+direccion
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:powermetal.4@localhost/final'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
+app = Flask(__name__)
+db = SQLAlchemy()
+def create_app():
+    db.init_app(app)
+    return app
 
 from db import Models
 # RUTAS

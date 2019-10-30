@@ -1,6 +1,10 @@
 #database Relacional SQLALCHEMY
 from app import db
-from flask_sqlalchemy import SQLAlchemy
+from app import SQLAlchemy
+from app import create_app
+from flask_sqlalchemy import Model, dec
+
+
 
 class Usuario(db.Model):
     __tablename__='usuarios'
@@ -123,5 +127,20 @@ class Solicitud_Tarea(db.Model):
             "tarea_id": self.tarea_id,
             "comentary": self.comentary,
             "new_price": self.new_price,
+            "status": self.status
+        }
+class Candidato(db.Model):
+    __tablename__='candidatos'
+    id = db.Column(db.Integer, primary_key = True, unique = True)
+    task_id = db.Column(db.Integer, db.Foreign_key('Tarea.id'), nullable = False)
+    user_service_id = db.Column(db.Integer, db.Foreign_key('Usuario.id'), nullable= False)
+    status = db.Column(db.String(10), nullable=False)
+    def __repr__(self):
+        return '<Candidato %r>' % self.id, self.task_id, self.user_service_id, self.status 
+    def serialize(self):
+        return{
+            "id": self.id,
+            "task_id": self.task_id,
+            "user_service_id": self.user_service_id,
             "status": self.status
         }
