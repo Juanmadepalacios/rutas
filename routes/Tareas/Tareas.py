@@ -1,12 +1,9 @@
 from app import db, app
-from db.Models import Tareas
-from db.Models import Usuario, Tarea
-import datetime
+from db.Models import Tarea
 
-@app.route('/Tareas', methods=['GET', 'POST'])
+@app.route('/Tareas', methods=['GET'])
 def tareas(): 
-
-   
+    from routes.Tareas import task_request
 
 
 @app.route('/Tareas/<int: id>', methods =['GET'])

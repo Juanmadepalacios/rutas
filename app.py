@@ -2,15 +2,11 @@ import os
 from flask import Flask, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:powermetal.4@localhost/final'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app = Flask(__name__)
-db = SQLAlchemy()
-def create_app():
-    db.init_app(app)
-    return app
+db = SQLAlchemy(app)
 
-from db import Models
 # RUTAS
 @app.route('/')
 def index():
@@ -26,7 +22,7 @@ def login(username, password):
 def dashboard():
     pass
 
-
+db.create_all()
 if __name__ == "__main__":
     app.run(port=5000,
             debug=True)

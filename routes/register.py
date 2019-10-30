@@ -1,4 +1,4 @@
-from db.Models import Usuario
+from db.Models import Usuario, Profile, Rol
 from flask import request, Response
 from flask import jsonify
 from app import db, app
@@ -9,6 +9,8 @@ import rut_chile
 def registry():
     bodydata = request.get_json()
     new_user = Usuario()
+    new_person = Profile()
+    new_rol = Rol()
     persona = {
         "name": bodydata['name'],
         "lastname": bodydata['lastname'],
@@ -22,29 +24,29 @@ def registry():
     respuesta= persona + Response.status_code
     if bodydata is True:
         new_user.name = persona["name"]
-        if (20 >= len(new_user.name) >= 5) and new_user.name:
-            new_user.name.capitalize()
-            new_user.last_name = persona["lastname"]
-            if (20 <= len(new_user.last_name) >= 5) and new_user.last_name:
-                new_user.last_name.capitalize()
-                new_user.rut = persona["rut"]
-                if rut_chile.is_valid_rut(new_user.rut):
-                    new_user.persona["verificador"]
-                    if rut_chile.get_verifiction_digit(new_user.rut) == new_user.dv:
+        if (20 >= len(new_person.name) >= 5) and new_person.name:
+            new_person.name.capitalize()
+            new_person.last_name = persona["lastname"]
+            if (20 <= len(new_person.last_name) >= 5) and new_person.last_name:
+                new_person.last_name.capitalize()
+                new_person.rut = persona["rut"]
+                if rut_chile.is_valid_rut(new_person.rut):
+                    new_person.persona["verificador"]
+                    if rut_chile.get_verifiction_digit(new_person.rut) == new_person.dv:
                         new_user.mail = persona["email"]
                         if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)][(a-z)]{2,15}$', new_user.mail.lower()):
                             new_user.username = persona["username"]
-                            if (10 >= len(new_user.username) <=12):
+                            if 10 >= len(new_user.username) <=12:
                                 new_user.password = persona["password"]
-                                if re.match('^[(a-z0-9A-Z\_\-\.)]', new_user.password):
+                                if re.match('^[(a-z0-9A-Z\_\.)]', new_user.password):
                                     new_user.image = persona["thumbnail"]
                                     if new_user.lower().endswitch('.jpeg','.png','.gif'):
                                          try:
                                             insertion = db.session.add(
-                                                new_user.name,
-                                                new_user.last_name,
-                                                new_user.rut,
-                                                new_user.dv,
+                                                new_person.name,
+                                                new_person.last_name,
+                                                new_person.rut,
+                                                new_person.dv,
                                                 new_user.username,
                                                 new_user.password,
                                                 new_user.image)
