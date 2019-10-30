@@ -1,7 +1,6 @@
 import os
 from flask import Flask, redirect, url_for, jsonify
-from flask_sqlalchemy import SQLAlchemy
-
+from 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:powermetal.4@localhost/final'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
