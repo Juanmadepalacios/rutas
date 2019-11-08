@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from src.utils  import APIException, generate_sitemap
 from src.models import db
-
+from flask_jwt_extended import (JWTManager)
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -17,6 +17,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
+
+jwt = JWTManager(app)
+
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)

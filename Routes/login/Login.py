@@ -1,8 +1,10 @@
 from src.models import User
 from src.main import app, request, jsonify
 from passlib.hash import pbkdf2_sha256 as sha256
-from flask_jwt_extended import create_access_token, create_refresh_token
-
+from flask_jwt_extended import (
+    JWTManager, jwt_required, create_access_token, create_refresh_token,
+    get_jwt_identity
+)
 
 @app.route('/login')
 def signup():
