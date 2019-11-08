@@ -6,8 +6,8 @@ from flask import Flask, request, jsonify, url_for
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
-from src.utils  import APIException, generate_sitemap
-from src.models import db
+from utils  import APIException, generate_sitemap
+from models import db
 from flask_jwt_extended import (JWTManager)
 
 app = Flask(__name__)
@@ -26,9 +26,9 @@ jwt = JWTManager(app)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
-from Routes.login import Registro
+#from Routes import Registro
 
-from Routes.login import Login
+#from Routes import Login
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
