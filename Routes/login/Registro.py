@@ -1,6 +1,6 @@
 from src.models import User, Rol, Profile, db
 from src.main import app, request
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash
 
 @app.route('/registro', methods=['POST'])
 def register():

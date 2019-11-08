@@ -1,6 +1,7 @@
 from src.models import User
 from src.main import app, request, jsonify
 from passlib.hash import pbkdf2_sha256 as sha256
+from flask_jwt_extended import create_access_token, create_refresh_token
 
 
 @app.route('/login')
@@ -12,10 +13,11 @@ def signup():
             "error": "el usuario no existe"
         }), 404
     if sha256.verify(data["password"], user.password):
-        mivariable = create_access_token(identity=data["username"])
+        tocken = create_access_token(identity=data["username"])
         refresh = create_refresh_token(identity=data["username"])
+
         return jsonify({
-            "token": mivariable,
+            "token": tocken,
             "refresh": refresh
         }), 200
 
