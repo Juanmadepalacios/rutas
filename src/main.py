@@ -13,10 +13,24 @@ from flask_jwt_extended import (JWTManager)
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_CONNECTION_STRING')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Falseapp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'secret-key'
+app.config['DEBUG'] = True
+app.config['ENV'] = 'development'
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'tareas4geeks@gmail.com'
+app.config['MAIL_PASSWORD'] = '4geeks2019'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
 MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
+
+mail = Mail(app)
+
+
 
 jwt = JWTManager(app)
 
