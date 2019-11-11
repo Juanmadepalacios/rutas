@@ -67,9 +67,9 @@ class Rol(db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(25), nullable=False)
-    commentary = db.Column(db.String(150), nullable=False)
+    description = db.Column(db.String(150), nullable=False)
     creation = db.Column(db.DateTime, nullable=False)
-    start = db.Column(db.DateTime, nullable=False)
+    start = db.Column(db.DateTime, nullable=True)
     final = db.Column(db.DateTime, nullable=True)
     price = db.Column(db.Float, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
