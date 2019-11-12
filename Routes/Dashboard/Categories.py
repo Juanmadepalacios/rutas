@@ -1,5 +1,5 @@
 from src.main import db
-from src.models import Task
+from src.models import Category
 from flask import request, jsonify
 
 @app.route('/all_category', methods=['GET'])
