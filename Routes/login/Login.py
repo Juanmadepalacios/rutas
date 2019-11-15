@@ -15,7 +15,7 @@ def signup():
             "error": "el usuario no existe"
         }), 404
     if sha256.verify(data["password"], user.password):
-        tocken = create_access_token(identity=data["username"])
+        token = create_access_token(identity=data["username"])
         refresh = create_refresh_token(identity=data["username"])
 
         return jsonify({
